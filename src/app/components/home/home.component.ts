@@ -42,12 +42,18 @@ export class HomeComponent implements OnInit {
   flightDeals: HomeFlightDeals[] = [];
   minDate: Date;
   maxDate: Date;
+  labelDeals : string;
+  labelDealsMessage: string;
+  labelSelectMessage: string;
 
   constructor(
     private formBuilder: FormBuilder,
     private flightService: FlightsService,
     private router: Router,
     private route: ActivatedRoute) {
+    this.labelDeals = 'Destinations and deals' 
+    this.labelDealsMessage = 'Discover our best Economy class deals on flights departing from';
+    this.labelSelectMessage = 'Select your travel date';
     this.bookFlightText = 'Book a flight';
     this.tripCategories = [
       {
@@ -108,16 +114,14 @@ export class HomeComponent implements OnInit {
   }
 
   onSelectChange(event: any): void {
-    console.log(event);
   }
 
   searchFlights(): void {
     this.router.navigate(['/flight-list', { searchParams: JSON.stringify(this.searchForm.value) }]);
   }
 
-  getFlightDeals(): HomeFlightDeals[] {
+  private getFlightDeals(): HomeFlightDeals[] {
     this.flightService.getFlightDeals().subscribe((data) => {
-      console.log(data);
       this.flightDeals = data;
     });
     return this.flightDeals;

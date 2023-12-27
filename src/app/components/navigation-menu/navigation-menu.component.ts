@@ -18,7 +18,7 @@ export class NavigationMenuComponent {
     this.headerNavArray =  [
       {
         label: 'Home',
-        link:'/home'
+        link:''
       },
       {
         label: 'My Trip',

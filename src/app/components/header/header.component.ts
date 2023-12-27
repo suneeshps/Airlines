@@ -15,5 +15,12 @@ import { RouterLink } from '@angular/router';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+  labelLogin: string;
+  labelSignUp: string;
+
+  constructor(){
+    this.labelLogin = 'Log in';
+    this.labelSignUp = 'Sign up';
+  }
 
 }

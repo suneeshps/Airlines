@@ -8,10 +8,13 @@ header {
 }
 
 main {
+    margin: 0 auto;
+    min-height: calc(100% - 200px);
+
     @include large-desktop {
         max-width: $max-layout-width;
     }
-    margin: 0 auto;
+
 }
 
 footer {

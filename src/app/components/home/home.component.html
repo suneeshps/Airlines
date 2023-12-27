@@ -38,7 +38,7 @@
                 <div class="klm-home__search-container__card__row-2">
                     <div class="klm-home__search-container__card__row-1__column-1">
                         <mat-form-field class="klm-home__search-container__card__form-field" *ngIf="searchForm.get('tripCategory')?.value">
-                            <mat-label>Select your travel date</mat-label>
+                            <mat-label>{{labelSelectMessage}}</mat-label>
                             <mat-date-range-input [rangePicker]="picker" [min]="minDate" 
                             [max]="maxDate">
                                 <input matStartDate placeholder="Start date" formControlName="departureDate">
@@ -49,7 +49,7 @@
                         </mat-form-field>
 
                         <mat-form-field class="klm-home__search-container__card__form-field" *ngIf="!searchForm.get('tripCategory')?.value">
-                            <mat-label>Select your travel date</mat-label>
+                            <mat-label>{{labelSelectMessage}}</mat-label>
                             <input matInput [matDatepicker]="oneWayPicker" formControlName="travelDate">
                             <mat-datepicker-toggle matIconSuffix [for]="oneWayPicker"></mat-datepicker-toggle>
                             <mat-datepicker #oneWayPicker></mat-datepicker>
@@ -79,9 +79,9 @@
         </mat-card>
     </div>
     <div class="klm-home__deals">
-        <h2>Destinations and deals</h2>
+        <h2>{{labelDeals}}</h2>
         <div class="klm-home__deals__selection">
-            <p> Discover our best Economy class deals on flights departing from </p>
+            <p> {{labelDealsMessage}}</p>
             <mat-select placeholder="Delhi, Indira Gandhi international Airport (DEL)"  [(value)]="airports[0].code"
                 (selectionChange)="onSelectChange($event)" class="klm-home__deals__selection__drop-down">
                 <mat-option [value]="item.code"  *ngFor="let item of airports">

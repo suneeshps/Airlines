@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { FlightList } from '../interfaces/flight-list';
+import { FlightDeals } from '../interfaces/flight-deals';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -7,8 +11,8 @@ import { Observable } from 'rxjs';
 
 export class FlightsService {
 
-  flightList: any;
-  flightDeals: any;
+  flightList: FlightList[];
+  flightDeals: FlightDeals[];
 
   constructor() {
     this.flightList = [
@@ -22,6 +26,7 @@ export class FlightsService {
         "destinationPlace": "Amsterdam",
         "operatingFlightLogo": "https://img.static-kl.com/transform/d0753316-d164-417e-8536-19e4f8879132/?io=transform:fill,height:32",
         "operatingCarrier": "KLM",
+        "flightNumber" : "KL0872",
         "duration": "9h35",
         "cabinClass": "ECONOMY",
         "currency": "INR",
@@ -121,10 +126,9 @@ export class FlightsService {
     ]
   }
 
-  getFlightList(searchParams : any): Observable<any> {
+  getFlightList(searchParams : string | null) : Observable<any> {
     return new Observable(observer => {
       setTimeout(() => {
-        console.log("Delayed for 1 second.");
         observer.next(this.flightList);
       }, 1000);
     });
@@ -133,7 +137,6 @@ export class FlightsService {
   getFlightDeals(): Observable<any> {
     return new Observable(observer => {
       setTimeout(() => {
-        console.log("Delayed for 1 second.");
         observer.next(this.flightDeals);
       }, 1000);
     });

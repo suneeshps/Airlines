@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FlightsService } from '../../../shared/services/flights.service';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
+import { FlightList } from '../../../shared/interfaces/flight-list';
 
 @Component({
   selector: 'klm-flight-list',
@@ -14,19 +15,19 @@ import { CommonModule } from '@angular/common';
   templateUrl: './flight-list.component.html',
   styleUrl: './flight-list.component.scss'
 })
-export class FlightListComponent implements OnInit{
-  searchParams: any;
-  flightList: any;
+export class FlightListComponent implements OnInit {
+  flightList: FlightList[] = [];
+  labelDuration: string;
 
-  constructor(private route: ActivatedRoute, private flightService: FlightsService) {}
-  ngOnInit(): void {
-    this.searchParams = this.route.snapshot.paramMap.get('searchParams');
-    debugger
-    console.log("sasdasd",this.searchParams);
-    
-    this.flightService.getFlightList(this.searchParams).subscribe((data) => {
-      //console.log(data);
+  constructor(private route: ActivatedRoute, private flightService: FlightsService) {
+    this.labelDuration = 'Duration';
+  }
+
+  ngOnInit() {
+    const searchParams = this.route.snapshot.paramMap.get('searchParams');
+    this.flightService.getFlightList(searchParams).subscribe((data) => {
       this.flightList = data;
     });
   }
+
 }
