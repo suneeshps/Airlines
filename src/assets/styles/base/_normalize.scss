@@ -1,0 +1,16 @@
+html,
+body,
+input {
+    height: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+body{
+    font-family: Roboto,sans-serif;
+    font-size: $font-size-15;
+    color: $primary-blue-color;
+    margin:0 auto;
+    padding:0;
+    background-color: $primary-white-color;
+
+}

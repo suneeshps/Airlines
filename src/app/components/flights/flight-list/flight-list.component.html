@@ -1,0 +1,14 @@
+<div class="klm-flight-list">
+    <h2>{{flightList[0].originPlace}} - {{ flightList[0].destinationPlace }}</h2>
+    <div class="klm-flight-list__selection">
+    </div>
+    <mat-card class="klm-flight-list__item" *ngFor="let item of flightList">
+        <mat-card-content class="klm-flight-list__item__content">
+            <span>{{item.departureTime | date : "mm:ss"}} - {{item.arrivalTime | date : "mm:ss"}}</span>
+            <span>{{item.originCode}} ({{item.destinationCode}})</span>
+            <span><img mat-card-sm-image alt="logo" [src]="item.operatingFlightLogo"></span>
+            <span> {{item.duration}}</span>
+            <span>{{item.currency}} {{item.displayPrice | currency : item.currency}}</span>
+        </mat-card-content>
+    </mat-card>
+</div>

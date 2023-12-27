@@ -1,0 +1,16 @@
+<div class="klm-footer">
+    <nav class="">
+        <mat-nav-list>
+            <mat-list-item *ngFor="let link of footerNavArray">
+                <a matLine [routerLink]="link.link">{{ link.label }}</a>
+            </mat-list-item>
+        </mat-nav-list>
+    </nav>
+    <nav>
+        <mat-nav-list>
+            <mat-list-item *ngFor="let link of legalNavArray">
+                <a matLine [routerLink]="link.link">{{ link.label }}</a>
+            </mat-list-item>
+        </mat-nav-list>
+    </nav>
+</div>

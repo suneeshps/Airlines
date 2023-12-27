@@ -1,0 +1,20 @@
+@import '../assets/styles/main';
+
+header {
+    -webkit-box-shadow: -1px 10px 5px 0px $box-shadow-color;
+    -moz-box-shadow: -1px 10px 5px 0px $box-shadow-color;
+    box-shadow: -1px 10px 5px 0px $box-shadow-color;
+    height: 100px;
+}
+
+main {
+    @include large-desktop {
+        max-width: $max-layout-width;
+    }
+    margin: 0 auto;
+}
+
+footer {
+    background-color: $secondary-grey-color;
+    padding: 10px;
+}

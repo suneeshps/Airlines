@@ -1,0 +1,27 @@
+//List 
+.klm-footer,
+.klm-header__container {
+    .mdc-list-item {
+        display: initial;
+
+        a {
+            text-decoration: inherit;
+            color: $primary-blue-color;
+        }
+    }
+}
+
+// Input fields
+.klm-home {
+    .mat-mdc-text-field-wrapper {
+        border: 1px solid $input-border-color;
+        border-bottom: 0;
+        border-radius: 5px;;
+    }
+
+    .mdc-text-field--filled {
+        &:not(.mdc-text-field--disabled) {
+            background-color: $primary-white-color;
+        }
+    }
+}

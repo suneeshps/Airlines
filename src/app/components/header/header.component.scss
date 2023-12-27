@@ -1,0 +1,64 @@
+@import '../../../assets/styles/main';
+
+.klm-header {
+    &__container {
+        @include large-desktop {
+            max-width: $max-layout-width;
+            height: 45px;
+            margin: 0 auto;
+        }
+    }
+
+    &__top-header {
+        width: 100%;
+        padding: 5px 0;
+
+        &__logo {
+            display: flex;
+
+            &__left {
+                flex: 1;
+
+                span {
+                    display: inline-block;
+                    background-image: url(../../../assets/images/kl-logo-2022.svg);
+                    width: 300px;
+                    height: 43px;
+                }
+            }
+
+            &__right {
+                flex: 1;
+                text-align: end;
+                padding-top: 5px;
+
+                &__login {
+                    padding-left: 25x;
+                    display: inline-block;
+
+                    &__icon {
+                        position: relative;
+                        top: 7px;
+                        right: 5px;
+                    }
+                }
+
+                &__sign-up {
+                    padding-left: 25px;
+                    display: inline-block;
+
+                    &__icon {
+                        position: relative;
+                        top: 7px;
+                        right: 5px;
+                    }
+                }
+            }
+        }
+    }
+
+    &__bottom-header {
+        width: 100%;
+
+    }
+}

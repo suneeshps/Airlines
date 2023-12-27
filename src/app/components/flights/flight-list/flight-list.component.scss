@@ -1,0 +1,32 @@
+@import '../../../../assets/styles/main';
+
+ 
+.klm-flight-list {
+    width: 100%;
+    align-items: center;
+    margin: 0 auto;
+    padding:20px;
+
+    &__item {
+        margin-bottom: 20px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $box-shadow-color;
+        }
+
+        &__content {
+            display: flex;
+            align-items: center;
+            transition: .3s ease;
+
+            span {
+                flex: 1;
+            }
+
+            &:hover {
+                transform: scale(.98);
+            }
+        }
+    }
+}

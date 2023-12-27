@@ -1,0 +1,9 @@
+<ng-container class="klm-navigation-menu">
+
+    <mat-nav-list>
+        <mat-list-item *ngFor="let link of headerNavArray" class="klm-navigation-menu__item">
+            <a matLine [routerLink]="link.link">{{ link.label }}</a>
+        </mat-list-item>
+    </mat-nav-list>
+
+</ng-container>

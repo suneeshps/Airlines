@@ -1,0 +1,9 @@
+@import '../../../assets/styles/main';
+.klm-navigation-menu {
+    &__item{
+        padding:16px;
+        a{
+            text-decoration: none;
+        }
+    }
+}

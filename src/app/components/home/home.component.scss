@@ -1,0 +1,111 @@
+@import '../../../assets/styles/main';
+
+.klm-home {
+    &__search-container {
+        padding: 20px;
+
+        &__card {
+            padding: 10px;
+
+            &__form-field {
+                width: calc(100% - 10px);
+                padding: 10px;
+            }
+
+            &__row-1 {
+                display: flex;
+
+                &__column-1 {
+                    flex: 1;
+                }
+
+                &__column-2 {
+                    flex: 1;
+                }
+
+                &__column-3 {
+                    flex: 1;
+                }
+            }
+
+            &__row-2 {
+                display: flex;
+
+                &__column-1 {
+                    flex: 1;
+                }
+
+                &__column-2 {
+                    flex: 1;
+                }
+
+                &__column-3 {
+                    flex: 1;
+                }
+            }
+
+            &__row-3 {
+                display: flex;
+                float: inline-end;
+
+                input[type=submit] {
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    outline: none;
+                    background-color: $primary-blue-color;
+                    color: $primary-white-color;
+                    font-size: $font-size-17;
+                    border: 1px solid $primary-blue-color;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    &__deals {
+        padding: 20px;
+        width: 75%;
+        margin: 0 auto;
+
+        &__selection {
+            display: flex;
+            padding-bottom: 20px;
+
+            p {
+                flex: 2;
+                text-align: right;
+                padding-right: 15px;
+            }
+
+            &__drop-down {
+                flex: 1;
+            }
+
+        }
+
+        &__item {
+            margin-bottom: 20px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $box-shadow-color;
+            }
+
+            &__content {
+                display: flex;
+                align-items: center;
+                transition: .3s ease;
+
+                span {
+                    flex: 1;
+                }
+
+                &:hover {
+                    transform: scale(.98);
+                }
+            }
+        }
+
+    }
+
+}

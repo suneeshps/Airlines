@@ -1,0 +1,9 @@
+@import '../../../assets/styles/main';
+
+.klm-footer{
+    background-color: $secondary-grey-color;
+    margin: 0 auto;
+    @include large-desktop {
+        max-width: $tablet-landscape-width;
+    }
+}

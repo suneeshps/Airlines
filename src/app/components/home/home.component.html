@@ -1,0 +1,101 @@
+<div class="klm-home">
+    <div class="klm-home__hero-image">
+        <picture>
+            <source *ngFor="let source of getPictureSource()" [media]="source.media" [srcset]="source.src" />
+            <img _ngcontent-server-app-c2326870911="" class="bwc-hero-image bwc-hero-image--content-image"
+                alt="sunrise deals"
+                src="https://img.static-kl.com/transform/abe24868-a29c-4a76-856e-2d74cc20ab2b/?io=transform:fill,width:1440,height:480"
+                style="aspect-ratio: 3 / 1;">
+        </picture>
+    </div>
+    <div class="klm-home__search-container">
+        <h2>{{bookFlightText}}</h2>
+        <mat-card class="klm-home__search-container__card">
+            <form [formGroup]="searchForm" (ngSubmit)="searchFlights()">
+                <div class="klm-home__search-container__card__row-1">
+                    <div class="klm-home__search-container__card__row-1__column-1">
+                        <mat-form-field class="klm-home__search-container__card__form-field">
+                            <mat-select placeholder="Select Trip" formControlName="tripCategory"
+                                (selectionChange)="onSelectChange($event)">
+                                <mat-option [value]="item.value" *ngFor="let item of tripCategories">
+                                    {{ item.label }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="klm-home__search-container__card__row-1__column-2">
+                        <mat-form-field class="klm-home__search-container__card__form-field">
+                            <input matInput placeholder="Departing from" formControlName="departure" required
+                                type="search">
+                        </mat-form-field>
+                    </div>
+                    <div class="klm-home__search-container__card__row-1__column-3">
+                        <mat-form-field class="klm-home__search-container__card__form-field">
+                            <input matInput placeholder="Arriving at" formControlName="arrival" type="search">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="klm-home__search-container__card__row-2">
+                    <div class="klm-home__search-container__card__row-1__column-1">
+                        <mat-form-field class="klm-home__search-container__card__form-field" *ngIf="searchForm.get('tripCategory')?.value">
+                            <mat-label>Select your travel date</mat-label>
+                            <mat-date-range-input [rangePicker]="picker" [min]="minDate" 
+                            [max]="maxDate">
+                                <input matStartDate placeholder="Start date" formControlName="departureDate">
+                                <input matEndDate placeholder="End date" formControlName="returnDate">
+                            </mat-date-range-input>
+                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-date-range-picker #picker></mat-date-range-picker>
+                        </mat-form-field>
+
+                        <mat-form-field class="klm-home__search-container__card__form-field" *ngIf="!searchForm.get('tripCategory')?.value">
+                            <mat-label>Select your travel date</mat-label>
+                            <input matInput [matDatepicker]="oneWayPicker" formControlName="travelDate">
+                            <mat-datepicker-toggle matIconSuffix [for]="oneWayPicker"></mat-datepicker-toggle>
+                            <mat-datepicker #oneWayPicker></mat-datepicker>
+                          </mat-form-field>
+                    </div>
+                    <div class="klm-home__search-container__card__row-1__column-2">
+                        <mat-form-field class="klm-home__search-container__card__form-field">
+                            <input matInput placeholder="1 Passenger" required type="number" min="1">
+                        </mat-form-field>
+                    </div>
+                    <div class="klm-home__search-container__card__row-1__column-3">
+                        <mat-form-field class="klm-home__search-container__card__form-field">
+                            <mat-select placeholder="Select Trip" formControlName="economyCategory"
+                                (selectionChange)="onSelectChange($event)">
+                                <mat-option [value]="item.value" *ngFor="let item of economyCategories">
+                                    {{ item.label }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="klm-home__search-container__card__row-3">
+                    <input type="submit" value="Search flights">
+                </div>
+
+            </form>
+        </mat-card>
+    </div>
+    <div class="klm-home__deals">
+        <h2>Destinations and deals</h2>
+        <div class="klm-home__deals__selection">
+            <p> Discover our best Economy class deals on flights departing from </p>
+            <mat-select placeholder="Delhi, Indira Gandhi international Airport (DEL)"  [(value)]="airports[0].code"
+                (selectionChange)="onSelectChange($event)" class="klm-home__deals__selection__drop-down">
+                <mat-option [value]="item.code"  *ngFor="let item of airports">
+                    {{ item.label }}
+                </mat-option>
+            </mat-select>
+        </div>
+        <mat-card class="klm-home__deals__item" *ngFor="let item of flightDeals">
+            <mat-card-content class="klm-home__deals__item__content">
+                <span><img mat-card-sm-image alt="logo" [src]="item.logoUrl"></span>
+                <span>{{item.destination}} ({{item.country}})</span>
+                <span> {{item.currency}} {{item.startingPrice | currency : item.currency}}</span>
+                <span>{{item.tripCategory}}</span>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
