@@ -1,14 +1,238 @@
 <div class="klm-flight-list">
-    <h2>{{flightList[0].originPlace}} - {{ flightList[0].destinationPlace }}</h2>
-    <div class="klm-flight-list__selection">
-    </div>
-    <mat-card class="klm-flight-list__item" *ngFor="let item of flightList">
-        <mat-card-content class="klm-flight-list__item__content">
-            <span>{{item.departureTime | date : "h:mm a"}} - {{item.arrivalTime | date : "h:mm a"}}</span>
-            <span>{{item.originCode}} {{item.destinationCode}}</span>
-            <span><img mat-card-sm-image alt="logo" [src]="item.operatingFlightLogo"></span>
-            <span> {{labelDuration}} - {{item.duration}}</span>
-            <span>{{item.currency}} {{item.displayPrice | currency : item.currency}}</span>
-        </mat-card-content>
-    </mat-card>
+
+    <mat-stepper #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup">
+                <ng-template matStepLabel>{{labelData.outboundFlight}}</ng-template>
+                <h2>{{flightList?.[0]?.originPlace}} - {{ flightList?.[0]?.destinationPlace }}</h2>
+                <div class="klm-flight-list__selection">
+                </div>
+                <mat-card class="klm-flight-list__item" *ngFor="let item of flightList">
+                    <mat-card-content class="klm-flight-list__item__content">
+                        <span>{{item.departureTime | date : "MMM d, y h:mm a"}}
+                            <br> {{item.arrivalTime | date : "MMM d, y h:mm a"}}</span>
+                        <span>{{item.originCode}} - {{item.destinationCode}}</span>
+                        <span><img alt="labelData.logo" [src]="item.operatingFlightLogo"></span>
+                        <span> {{labelData.duration}} - {{item.duration}}</span>
+                        <span>{{item.currency}} {{item.displayPrice | currency : item.currency}}</span>
+                        <span><button mat-raised-button matStepperNext color="primary"
+                                class="klm-flight-list__item__content__btn"
+                                (click)="getReturnFlightList(item)">{{labelData.select}} </button></span>
+                    </mat-card-content>
+                </mat-card>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup" [label]="labelData.outboundFlight">
+            <form [formGroup]="secondFormGroup">
+
+                <h2>{{returnFlightList?.[0]?.originPlace}} - {{ returnFlightList?.[0]?.destinationPlace }}</h2>
+                <mat-card class="klm-flight-list__item" *ngFor="let item of returnFlightList">
+                    <mat-card-content class="klm-flight-list__item__content">
+                        <span>{{item.departureTime | date : "MMM d, y h:mm a"}}
+                            <br> {{item.arrivalTime | date : "MMM d,y h:mm a"}}</span>
+                        <span>{{item.originCode}} - {{item.destinationCode}}</span>
+                        <span><img alt="labelData.logo" [src]="item.operatingFlightLogo"></span>
+                        <span> {{labelData.duration}} - {{item.duration}}</span>
+                        <span>{{item.currency}} {{item.displayPrice | currency : item.currency}}</span>
+                        <span><button mat-raised-button matStepperNext color="primary"
+                                class="klm-flight-list__item__content__btn"
+                                (click)="goToPassengerDetails(item)">{{labelData.select}}</button></span>
+                    </mat-card-content>
+                </mat-card>
+
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="thirdFormGroup" label="Passengers">
+            <form [formGroup]="thirdFormGroup">
+                <div class="klm-flight-list__search-container__card__row-1">
+                    <div class="klm-flight-list__search-container__card__row-1__column-1">
+                        <mat-form-field class="klm-flight-list__search-container__card__form-field">
+                            <mat-select [placeholder]="labelData.title" formControlName="genderCategory">
+                                <mat-option [value]="item.value" *ngFor="let item of genderCategories">
+                                    {{ item.label }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="klm-flight-list__search-container__card__row-1__column-2">
+                        <mat-form-field class="klm-flight-list__search-container__card__form-field">
+                            <input matInput [placeholder]="labelData.firstName" formControlName="firstName" required
+                                type="search">
+                        </mat-form-field>
+                    </div>
+                    <div class="klm-flight-list__search-container__card__row-1__column-3">
+                        <mat-form-field class="klm-flight-list__search-container__card__form-field">
+                            <input matInput [placeholder]="labelData.lastName" formControlName="lastName" type="search">
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="klm-flight-list__search-container__card__row-2">
+                    <div class="klm-flight-list__search-container__card__row-2__column-1">
+                        <mat-form-field class="klm-flight-list__search-container__card__form-field">
+                            <mat-select [placeholder]="labelData.countryCode" formControlName="countryCode">
+                                <mat-option [value]="item.value" *ngFor="let item of countryCodes">
+                                    {{ item.label }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="klm-flight-list__search-container__card__row-2__column-2">
+                        <mat-form-field class="klm-flight-list__search-container__card__form-field">
+                            <input matInput [placeholder]="labelData.email" formControlName="email" required
+                                type="email">
+                        </mat-form-field>
+                    </div>
+                    <div class="klm-flight-list__search-container__card__row-2__column-3">
+                        <mat-form-field class="klm-flight-list__search-container__card__form-field">
+                            <input matInput [placeholder]="labelData.telephoneNumber" formControlName="telephoneNumber"
+                                type="number">
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="klm-flight-list__search-container__card__row-3">
+                    <button mat-raised-button matStepperNext
+                        class="klm-flight-list__item__content__btn">{{labelData.proceed}}</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="fourthFormGroup">
+            <form [formGroup]="fourthFormGroup">
+                <ng-template matStepLabel>{{labelData.Payment}}</ng-template>
+
+                <div class="klm-flight-list__selection">
+                    <p>{{labelData.outboundFlight}}</p>
+                </div>
+                <h2>{{outboundFlight?.originPlace}} - {{ outboundFlight?.destinationPlace }}</h2>
+                <mat-card class="klm-flight-list__item">
+                    <mat-card-content class="klm-flight-list__item__content">
+                        <span>{{outboundFlight?.departureTime | date : "MMM d, y h:mm a"}}
+                            <br> {{outboundFlight?.arrivalTime | date : "MMM d,y h:mm a"}}</span>
+                        <span>{{outboundFlight?.originCode}} - {{outboundFlight?.destinationCode}}</span>
+                        <span><img alt="logo" [src]="outboundFlight?.operatingFlightLogo"></span>
+                        <span> {{labelData.duration}} - {{outboundFlight?.duration}}</span>
+                        <span>{{outboundFlight?.currency}} {{outboundFlight?.displayPrice | currency :
+                            outboundFlight?.currency}}</span>
+                    </mat-card-content>
+                </mat-card>
+
+                <div class="klm-flight-list__selection">
+                    <p>{{labelData.returnFlight}}t</p>
+                </div>
+                <h2>{{returnFlight?.originPlace}} - {{ returnFlight?.destinationPlace }}</h2>
+                <mat-card class="klm-flight-list__item">
+                    <mat-card-content class="klm-flight-list__item__content">
+                        <span>{{returnFlight?.departureTime | date : "MMM d, y h:mm a"}}
+                            <br> {{returnFlight?.arrivalTime | date : "MMM d,y h:mm a"}}</span>
+                        <span>{{returnFlight?.originCode}} - {{returnFlight?.destinationCode}}</span>
+                        <span><img alt="labelData.logo" [src]="returnFlight?.operatingFlightLogo"></span>
+                        <span> {{labelData.duration}} - {{returnFlight?.duration}}</span>
+                        <span>{{returnFlight?.currency}} {{returnFlight?.displayPrice | currency :
+                            returnFlight?.currency}}</span>
+                    </mat-card-content>
+                </mat-card>
+                <mat-card>
+                    <mat-card-content>
+                        <mat-radio-group aria-label="labelData.selectOption" formControlName="paymentMethod"
+                            (change)="selectPaymentMethod($event)">
+                            <mat-radio-button value="1">{{labelData.netBanking}}</mat-radio-button>
+                            <mat-radio-button value="2">{{labelData.creditCard}}</mat-radio-button>
+
+                            <div class="klm-flight-list__search-container__card__row-1"
+                                *ngIf="paymentMethodSelected === '1'">
+                                <div class="klm-flight-list__search-container__card__row-1__column-1">
+                                    <mat-form-field class="klm-flight-list__search-container__card__form-field">
+                                        <input matInput [placeholder]="labelData.address" formControlName="address"
+                                            required type="search">
+                                    </mat-form-field>
+                                </div>
+                                <div class="klm-flight-list__search-container__card__row-1__column-2">
+                                    <mat-form-field class="klm-flight-list__search-container__card__form-field">
+                                        <input matInput [placeholder]="labelData.city" formControlName="city" required
+                                            type="search">
+                                    </mat-form-field>
+                                </div>
+                                <div class="klm-flight-list__search-container__card__row-1__column-3">
+                                    <mat-form-field class="klm-flight-list__search-container__card__form-field">
+                                        <input matInput [placeholder]="labelData.postCode" formControlName="postCode"
+                                            type="search">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="klm-flight-list__search-container__card__row-2"
+                                *ngIf="paymentMethodSelected === '2'">
+                                <div class="klm-flight-list__search-container__card__row-2__column-1">
+                                    <mat-form-field class="klm-flight-list__search-container__card__form-field">
+                                        <input matInput [placeholder]="labelData.cardNumber"
+                                            formControlName="cardNumber" required type="text">
+                                    </mat-form-field>
+                                </div>
+                                <div class="klm-flight-list__search-container__card__row-2__column-2">
+                                    <mat-form-field class="klm-flight-list__search-container__card__form-field">
+                                        <input matInput [placeholder]="labelData.securityCode"
+                                            formControlName="securityCode" required type="number">
+                                    </mat-form-field>
+                                </div>
+                                <div class="klm-flight-list__search-container__card__row-2__column-3">
+
+                                </div>
+                            </div>
+
+                            <div class="klm-flight-list__search-container__card__row-3">
+                                <button mat-raised-button matStepperNext
+                                    class="klm-flight-list__item__content__btn">{{labelData.Payment}}</button>
+                            </div>
+                        </mat-radio-group>
+                    </mat-card-content>
+                </mat-card>
+            </form>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+
+            <mat-card class="klm-flight-list__item">
+                <mat-card-content class="klm-flight-list__item__content">
+
+                    <div>
+                        <h1>{{labelData.congratulations}}</h1>
+                        <h3>{{labelData.successMessage}}</h3>
+
+                        <div class="klm-flight-list__selection">
+                            <p>{{labelData.outboundFlight}} {{labelData.pnr}}<strong>U794J</strong></p>
+                        </div>
+                        <h2>{{outboundFlight?.originPlace}} - {{ outboundFlight?.destinationPlace }}</h2>
+                        <mat-card class="klm-flight-list__item">
+                            <mat-card-content class="klm-flight-list__item__content">
+                                <span>{{outboundFlight?.departureTime | date : "MMM d, y h:mm a"}}
+                                    <br> {{outboundFlight?.arrivalTime | date : "MMM d,y h:mm a"}}</span>
+                                <span>{{outboundFlight?.originCode}} - {{outboundFlight?.destinationCode}}</span>
+                                <span><img alt="logo" [src]="outboundFlight?.operatingFlightLogo"></span>
+                                <span> {{labelData.duration}} - {{outboundFlight?.duration}}</span>
+                                <span>{{outboundFlight?.currency}} {{outboundFlight?.displayPrice | currency :
+                                    outboundFlight?.currency}}</span>
+                            </mat-card-content>
+                        </mat-card>
+
+                        <div class="klm-flight-list__selection">
+                            <p>{{labelData.returnFlight}} {{labelData.pnr}}<strong>UB7FGJ</strong></p>
+                        </div>
+                        <h2>{{returnFlight?.originPlace}} - {{ returnFlight?.destinationPlace }}</h2>
+                        <mat-card class="klm-flight-list__item">
+                            <mat-card-content class="klm-flight-list__item__content">
+                                <span>{{returnFlight?.departureTime | date : "MMM d, y h:mm a"}}
+                                    <br> {{returnFlight?.arrivalTime | date : "MMM d,y h:mm a"}}</span>
+                                <span>{{returnFlight?.originCode}} - {{returnFlight?.destinationCode}}</span>
+                                <span><img alt="logo" [src]="returnFlight?.operatingFlightLogo"></span>
+                                <span> {{labelData.duration}} - {{returnFlight?.duration}}</span>
+                                <span>{{returnFlight?.currency}} {{returnFlight?.displayPrice | currency :
+                                    returnFlight?.currency}}</span>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-step>
+    </mat-stepper>
 </div>

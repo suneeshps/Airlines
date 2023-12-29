@@ -1,0 +1,29 @@
+{
+    "flighListComponent": {
+        "outboundFlight": "Outbound flight",
+        "select": "Select",
+        "title": "Title",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "countryCode": "Country code",
+        "email": "Email",
+        "telephoneNumber": "telephoneNumber",
+        "proceed": "Proceed",
+        "Payment": "Payment",
+        "returnFlight": "Return Flight",
+        "netBanking": "NETBANKING",
+        "creditCard": "CREDIT CARD",
+        "address": "Address",
+        "city": "City of residence",
+        "postCode": "Postal code/Zip code",
+        "cardNumber": "Card number",
+        "securityCode": "Security code",
+        "done": "Done",
+        "congratulations": "Congratulations",
+        "successMessage": "Your booking is confirmed!!..Thank you for choosing us.",
+        "pnr": "PNR:",
+        "logo": "logo",
+        "duration": "Duration",
+        "selectOption": "Select an option"
+    }
+}

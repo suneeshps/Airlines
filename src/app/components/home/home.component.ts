@@ -11,7 +11,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
 import { EconomyCategories } from '../../shared/interfaces/economy-categories.interface';
 import { FlightsService } from '../../shared/services/flights.service';
-import { Airports, AirportCode } from '../../shared/interfaces/airports-interfaces';
+import { Airports, AirportCode } from '../../shared/interfaces/airports-interface';
 import { HomePictureSource } from './home-picture-source.interface';
 import { HomeFlightDeals } from './home-flight-deals.interface';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -117,7 +117,8 @@ export class HomeComponent implements OnInit {
   }
 
   searchFlights(): void {
-    this.router.navigate(['/flight-list', { searchParams: JSON.stringify(this.searchForm.value) }]);
+   // let searchParams = '';
+    this.router.navigate(['/flight-list', JSON.stringify(this.searchForm.value) ]);
   }
 
   private getFlightDeals(): HomeFlightDeals[] {
