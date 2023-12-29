@@ -18,14 +18,9 @@
         &__content {
             display: flex;
             align-items: center;
-          //  transition: .3s ease;
 
             span {
                 flex: 1;
-            }
-
-            &:hover {
-              //  transform: scale(.98);
             }
 
             &__btn {
@@ -39,8 +34,13 @@
                 cursor: pointer;
                 margin-right: 10px;
             }
+
+            &__success {
+                width: 70%;
+            }
         }
     }
+
     &__search-container {
         padding: 20px;
 

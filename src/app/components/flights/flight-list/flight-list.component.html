@@ -22,7 +22,7 @@
                 </mat-card>
             </form>
         </mat-step>
-        <mat-step [stepControl]="secondFormGroup" [label]="labelData.outboundFlight">
+        <mat-step [stepControl]="secondFormGroup" [label]="labelData.returnFlight">
             <form [formGroup]="secondFormGroup">
 
                 <h2>{{returnFlightList?.[0]?.originPlace}} - {{ returnFlightList?.[0]?.destinationPlace }}</h2>
@@ -190,12 +190,12 @@
             </form>
         </mat-step>
         <mat-step>
-            <ng-template matStepLabel>Done</ng-template>
+            <ng-template matStepLabel>{{labelData.done}}</ng-template>
 
             <mat-card class="klm-flight-list__item">
                 <mat-card-content class="klm-flight-list__item__content">
 
-                    <div>
+                    <div class="klm-flight-list__item__content__success">
                         <h1>{{labelData.congratulations}}</h1>
                         <h3>{{labelData.successMessage}}</h3>
 
