@@ -43,5 +43,19 @@ export class FlightsService {
       }, 1000);
     });
   }
+  getUserOutboundFlighList(userId : string | null) : Observable<any> {
+    return new Observable(observer => {
+      setTimeout(() => {
+        observer.next(this.flightList[0]);
+      }, 1000);
+    });
+  }
+  getUserReturnFlighList(userId : string | null) : Observable<any> {
+    return new Observable(observer => {
+      setTimeout(() => {
+        observer.next(this.returnFlightList[0]);
+      }, 1000);
+    });
+  }
 
 }

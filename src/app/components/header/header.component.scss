@@ -55,6 +55,17 @@
                         right: 5px;
                     }
                 }
+                &__logout {
+                    padding-left: 25px;
+                    display: inline-block;
+                    cursor: pointer;
+
+                    &__icon {
+                        position: relative;
+                        top: 7px;
+                        right: 5px;
+                    }
+                }
             }
         }
     }

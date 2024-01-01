@@ -1,16 +1,23 @@
 <div class="klm-header__container">
     <div class="klm-header__top-header">
-        <div class="klm-header__top-header__logo" [routerLink]="['']">
-            <div class="klm-header__top-header__logo__left">
+        <div class="klm-header__top-header__logo">
+            <div class="klm-header__top-header__logo__left" [routerLink]="['']">
                 <span></span>
             </div>
             <div class="klm-header__top-header__logo__right">
-                <div class="klm-header__top-header__logo__right__login" [routerLink]="['/login']">
-                    <mat-icon class="klm-header__top-header__logo__right__login__icon">account_circle</mat-icon><span>{{labelLogin}}</span>
+                <div class="klm-header__top-header__logo__right__login" [routerLink]="['/login']"
+                    *ngIf="!authService.isAuthenticatedUser()">
+                    <mat-icon
+                        class="klm-header__top-header__logo__right__login__icon">account_circle</mat-icon><span>{{labelData.login}}</span>
                 </div>
-                <div class="klm-header__top-header__logo__right__sign-up">
+                <div class="klm-header__top-header__logo__right__sign-up" [routerLink]="['/sign-up']"
+                    *ngIf="!authService.isAuthenticatedUser()">
                     <mat-icon class="klm-header__top-header__logo__right__sign-up__icon">group_add</mat-icon>
-                    <span>{{labelSignUp}}</span>
+                    <span>{{labelData.signUp}}</span>
+                </div>
+                <div class="klm-header__top-header__logo__right__logout" *ngIf="authService.isAuthenticatedUser()"
+                    (click)="logOut()">
+                    <mat-icon class="klm-header__top-header__logo__right__logout__icon">power_settings_new</mat-icon>
                 </div>
             </div>
         </div>

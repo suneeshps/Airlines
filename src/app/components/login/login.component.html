@@ -1,1 +1,37 @@
-<p>login works!</p>
+<div class="klm-login">
+    <mat-card class="klm-login__container">
+        <h1>{{labelData.login}}</h1>
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <div class="klm-login__container__row-1">
+                <div class="klm-login__container__row-1__column-1">
+                    <mat-form-field class="klm-login__container__row-1__column-1__form-field">
+                        <input matInput [placeholder]="labelData.emailAddress" formControlName="userName" required
+                            type="text">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="klm-login__container__row-2">
+                <div class="klm-login__container__row-1__column-1">
+                    <mat-form-field class="klm-login__container__row-1__column-1__form-field">
+                        <input matInput [placeholder]="labelData.password" formControlName="password" required
+                            type="password">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="klm-login__container__row-3">
+                <input type="submit" [value]="labelData.login" [disabled]="!loginForm.valid">
+            </div>
+            <div class="klm-login__container__row-4">
+                <div class="klm-login__container__row-4__column-1">
+                    <a matLine [routerLink]="['/forgot-password']">{{labelData.forgotPassword}}</a>
+                </div>
+            </div>
+            <div class="klm-login__container__row-5">
+                <div class="klm-login__container__row-5__column-1">
+                    <a matLine [routerLink]="['/reset-password']">{{labelData.resetPassword}}</a>
+                </div>
+            </div>
+
+        </form>
+    </mat-card>
+</div>

@@ -1,12 +1,12 @@
 @import '../../../assets/styles/main';
 
-.klm-login {
+.klm-sign-up {
     &__container {
         padding: 20px;
         margin-top: 20px;
 
         @include large-desktop {
-            max-width: 50%;
+            max-width: 75%;
             margin: 20px auto;
         }
 
@@ -19,6 +19,15 @@
             display: flex;
 
             &__column-1 {
+                flex: 1;
+
+                &__form-field {
+                    width: calc(100% - 20px);
+                    padding: 10px;
+                }
+            }
+
+            &__column-2 {
                 flex: 1;
 
                 &__form-field {
@@ -39,12 +48,8 @@
                     padding: 10px;
                 }
             }
-        }
 
-        &__row-3 {
-            display: flex;
-            float: right;
-            &__column-1 {
+            &__column-2 {
                 flex: 1;
 
                 &__form-field {
@@ -53,24 +58,43 @@
                 }
             }
         }
+
+        &__row-3 {
+            display: flex;
+            &__column-1 {
+                flex: 1;
+
+                &__form-field {
+                    width: calc(100% - 20px);
+                    padding: 10px;
+                }
+            }
+
+            &__column-2 {
+                flex: 1;
+
+                &__form-field {
+                    width: calc(100% - 20px);
+                    padding: 10px;
+                }
+            }
+        }
+
         &__row-4 {
             display: flex;
-            padding-bottom: 15px;;
+            float: right;
             &__column-1 {
                 flex: 1;
             }
         }
-        &__row-5 {
-            display: flex;
-            &__column-1 {
-                flex: 1;
-            }
-        }
-        a{
+
+
+        a {
             text-decoration: none;
             color: $primary-blue-color;
             padding: 20px 10px;
         }
+
         input[type=submit] {
             padding: 10px 20px;
             border-radius: 5px;

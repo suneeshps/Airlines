@@ -33,6 +33,9 @@
                 border: 1px solid $primary-blue-color;
                 cursor: pointer;
                 margin-right: 10px;
+                &:disabled{
+                    opacity: 0.5;
+                }
             }
 
             &__success {

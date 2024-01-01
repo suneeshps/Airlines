@@ -7,8 +7,9 @@ import { Router, RouterModule } from '@angular/router';
 import * as data from '../../../assets/json/labels.json';
 import { AuthService } from '../../shared/services/auth-service';
 
+
 @Component({
-  selector: 'klm-login',
+  selector: 'klm-sign-up',
   standalone: true,
   imports: [
     CommonModule,
@@ -17,31 +18,33 @@ import { AuthService } from '../../shared/services/auth-service';
     MatCardModule,
     RouterModule
   ],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  templateUrl: './sign-up.component.html',
+  styleUrl: './sign-up.component.scss'
 })
-export class LoginComponent {
-  loginForm: FormGroup;
+export class SignUpComponent {
+  signUpForm: FormGroup;
   labelData: any;
-
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private authService: AuthService) {
-    this.loginForm = this.formBuilder.group({
-      userName: ['', [Validators.required]],
-      password: ['', [Validators.required]]
+    this.signUpForm = this.formBuilder.group({
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      email: ['', [Validators.required]],
+      phoneNumber: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      confirmPassword: ['', [Validators.required]]
     });
-    this.labelData = data.loginComponent;
+    this.labelData = data.signUpComponent;
 
   }
-  login(): void {
-    if (this.authService.login(this.loginForm.get('userName')?.value, this.loginForm.get('password')?.value)) {
+  signUp(): void {
+    if(this.authService.login(this.signUpForm.get('email')?.value, this.signUpForm.get('password')?.value)){
       this.router.navigate(['/dashboard']);
-    } else {
-      this.router.navigate(['/login']);
-    }
-  }
-
+     }else{
+     this.router.navigate(['']);
+     }
+   }
 }

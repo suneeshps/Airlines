@@ -117,7 +117,6 @@ export class HomeComponent implements OnInit {
   }
 
   searchFlights(): void {
-   // let searchParams = '';
     this.router.navigate(['/flight-list', JSON.stringify(this.searchForm.value) ]);
   }
 

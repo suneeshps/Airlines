@@ -25,5 +25,35 @@
         "logo": "logo",
         "duration": "Duration",
         "selectOption": "Select an option"
+    },
+    "dashboardComponent": {
+        "outboundFlight": "Outbound flight",
+        "returnFlight": "Return Flight",
+        "bookedFlights": "Your booked flights",
+        "welcomeMessage": "Hello John Mathew, Greetings!",
+        "pnr": "PNR:",
+        "logo": "logo",
+        "duration": "Duration"
+    },
+    "loginComponent":{
+        "login": "Login",
+        "emailAddress": "Email address",
+        "password" : "Password",
+        "forgotPassword": "Forgot password?",
+        "resetPassword": "Reset password"
+    },
+    "signUpComponent":{
+        "createNewAccount": "Create a new account",
+        "firstName": "First Name",
+        "lastName" : "Last Name",
+        "email": "Email Address",
+        "phoneNumber": "Phone Number",
+        "password": "Password",
+        "confirmPassword": "Confirm Password",
+        "register": "Register"
+    },
+    "HeaderComponent": {
+        "login" : "Login",
+        "signUp" : "Sign up"
     }
 }

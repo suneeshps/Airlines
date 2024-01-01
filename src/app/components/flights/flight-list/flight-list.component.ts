@@ -34,12 +34,11 @@ import * as data from '../../../../assets/json/labels.json';
 export class FlightListComponent implements OnInit {
   flightList?: FlightList[];
   returnFlightList?: FlightList[];
-  labelDuration: string;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   fourthFormGroup: FormGroup;
-  searchParams : string | null;
+  searchParams : any;
   outboundFlight?: FlightList;
   returnFlight?: FlightList;
   genderCategories: GenderPrefix[];
@@ -47,14 +46,15 @@ export class FlightListComponent implements OnInit {
   paymentMethod?:string;
   paymentMethodSelected?: string;
   labelData: any;
+  tripCategory: number;
 
 
   constructor(
     private route: ActivatedRoute,
     private flightService: FlightsService,
     private formBuilder: FormBuilder) {
-    this.labelDuration = 'Duration';
     this.searchParams = this.route.snapshot.paramMap.get('searchParams');
+    this.tripCategory = JSON.parse(this.searchParams).tripCategory;
     this.firstFormGroup = this.formBuilder.group({
       firstCtrl: ['', Validators.required],
     });

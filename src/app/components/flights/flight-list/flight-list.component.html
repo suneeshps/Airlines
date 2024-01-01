@@ -22,7 +22,7 @@
                 </mat-card>
             </form>
         </mat-step>
-        <mat-step [stepControl]="secondFormGroup" [label]="labelData.returnFlight">
+        <mat-step [stepControl]="secondFormGroup" [label]="labelData.returnFlight" *ngIf="tripCategory === 1">
             <form [formGroup]="secondFormGroup">
 
                 <h2>{{returnFlightList?.[0]?.originPlace}} - {{ returnFlightList?.[0]?.destinationPlace }}</h2>
@@ -93,7 +93,7 @@
 
                 <div class="klm-flight-list__search-container__card__row-3">
                     <button mat-raised-button matStepperNext
-                        class="klm-flight-list__item__content__btn">{{labelData.proceed}}</button>
+                        class="klm-flight-list__item__content__btn" [disabled]="!thirdFormGroup.valid">{{labelData.proceed}}</button>
                 </div>
             </form>
         </mat-step>
@@ -117,11 +117,11 @@
                     </mat-card-content>
                 </mat-card>
 
-                <div class="klm-flight-list__selection">
+                <div class="klm-flight-list__selection" *ngIf="returnFlight?.originPlace">
                     <p>{{labelData.returnFlight}}t</p>
                 </div>
-                <h2>{{returnFlight?.originPlace}} - {{ returnFlight?.destinationPlace }}</h2>
-                <mat-card class="klm-flight-list__item">
+                <h2 *ngIf="returnFlight?.originPlace">{{returnFlight?.originPlace}} - {{ returnFlight?.destinationPlace }}</h2>
+                <mat-card class="klm-flight-list__item" *ngIf="returnFlight?.originPlace">
                     <mat-card-content class="klm-flight-list__item__content">
                         <span>{{returnFlight?.departureTime | date : "MMM d, y h:mm a"}}
                             <br> {{returnFlight?.arrivalTime | date : "MMM d,y h:mm a"}}</span>
@@ -140,7 +140,7 @@
                             <mat-radio-button value="2">{{labelData.creditCard}}</mat-radio-button>
 
                             <div class="klm-flight-list__search-container__card__row-1"
-                                *ngIf="paymentMethodSelected === '1'">
+                                *ngIf="paymentMethodSelected === '1' && returnFlight?.originPlace" >
                                 <div class="klm-flight-list__search-container__card__row-1__column-1">
                                     <mat-form-field class="klm-flight-list__search-container__card__form-field">
                                         <input matInput [placeholder]="labelData.address" formControlName="address"
@@ -162,7 +162,7 @@
                             </div>
 
                             <div class="klm-flight-list__search-container__card__row-2"
-                                *ngIf="paymentMethodSelected === '2'">
+                                *ngIf="paymentMethodSelected === '2'  && returnFlight?.originPlace">
                                 <div class="klm-flight-list__search-container__card__row-2__column-1">
                                     <mat-form-field class="klm-flight-list__search-container__card__form-field">
                                         <input matInput [placeholder]="labelData.cardNumber"
@@ -215,11 +215,11 @@
                             </mat-card-content>
                         </mat-card>
 
-                        <div class="klm-flight-list__selection">
+                        <div class="klm-flight-list__selection" *ngIf="returnFlight?.originPlace">
                             <p>{{labelData.returnFlight}} {{labelData.pnr}}<strong>UB7FGJ</strong></p>
                         </div>
-                        <h2>{{returnFlight?.originPlace}} - {{ returnFlight?.destinationPlace }}</h2>
-                        <mat-card class="klm-flight-list__item">
+                        <h2 *ngIf="returnFlight?.originPlace">{{returnFlight?.originPlace}} - {{ returnFlight?.destinationPlace }}</h2>
+                        <mat-card class="klm-flight-list__item" *ngIf="returnFlight?.originPlace">
                             <mat-card-content class="klm-flight-list__item__content">
                                 <span>{{returnFlight?.departureTime | date : "MMM d, y h:mm a"}}
                                     <br> {{returnFlight?.arrivalTime | date : "MMM d,y h:mm a"}}</span>

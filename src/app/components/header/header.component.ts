@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { NavigationMenuComponent } from '../navigation-menu/navigation-menu.component';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../shared/services/auth-service';
+import { CommonModule } from '@angular/common';
+import * as data from '../../../assets/json/labels.json';
 
 @Component({
   selector: 'klm-header',
@@ -9,18 +12,25 @@ import { RouterLink } from '@angular/router';
   imports: [ 
     NavigationMenuComponent, 
     MatIconModule,
-    RouterLink
+    RouterLink,
+    CommonModule
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  labelLogin: string;
-  labelSignUp: string;
+  isLoggedIn: boolean;
+  labelData: any
 
-  constructor(){
-    this.labelLogin = 'Log in';
-    this.labelSignUp = 'Sign up';
+  constructor(
+    private router: Router,
+    public authService: AuthService){
+    this.labelData = data.HeaderComponent;
+    this.isLoggedIn = localStorage.getItem('userToken') === null;
+  }
+  logOut(): void {
+    this.authService.logout();
+    this.router.navigate(['']);
   }
 
 }

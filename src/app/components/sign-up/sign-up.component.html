@@ -1,0 +1,53 @@
+<div class="klm-sign-up">
+    <mat-card class="klm-sign-up__container">
+        <h1>{{labelData.createNewAccount}}</h1>
+        <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+            <div class="klm-sign-up__container__row-1">
+                <div class="klm-sign-up__container__row-1__column-1">
+                    <mat-form-field class="klm-sign-up__container__row-1__column-1__form-field">
+                        <input matInput [placeholder]="labelData.firstName" formControlName="firstName" required
+                            type="text">
+                    </mat-form-field>
+                </div>
+                <div class="klm-sign-up__container__row-1__column-2">
+                    <mat-form-field class="klm-sign-up__container__row-1__column-2__form-field">
+                        <input matInput [placeholder]="labelData.lastName" formControlName="lastName" required
+                            type="text">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="klm-sign-up__container__row-2">
+                <div class="klm-sign-up__container__row-2__column-1">
+                    <mat-form-field class="klm-sign-up__container__row-2__column-1__form-field">
+                        <input matInput [placeholder]="labelData.email" formControlName="email" required type="text">
+                    </mat-form-field>
+                </div>
+                <div class="klm-sign-up__container__row-2__column-2">
+                    <mat-form-field class="klm-sign-up__container__row-2__column-2__form-field">
+                        <input matInput [placeholder]="labelData.phoneNumber" formControlName="phoneNumber" required
+                            type="text">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="klm-sign-up__container__row-3">
+                <div class="klm-sign-up__container__row-3__column-1">
+                    <mat-form-field class="klm-sign-up__container__row-3__column-1__form-field">
+                        <input matInput [placeholder]="labelData.password" formControlName="password" required
+                            type="password">
+                    </mat-form-field>
+                </div>
+                <div class="klm-sign-up__container__row-3__column-2">
+                    <mat-form-field class="klm-sign-up__container__row-3__column-2__form-field">
+                        <input matInput [placeholder]="labelData.confirmPassword" formControlName="confirmPassword"
+                            required type="text">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="klm-sign-up__container__row-4">
+                <div class="klm-sign-up__container__row-4__column-1">
+                    <input type="submit" [value]="labelData.register" [disabled]="!signUpForm.valid">
+                </div>
+            </div>
+        </form>
+    </mat-card>
+</div>
