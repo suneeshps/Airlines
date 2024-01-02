@@ -5,6 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../shared/services/auth-service';
 import { CommonModule } from '@angular/common';
 import * as data from '../../../assets/json/labels.json';
+import * as constants from '../../../assets/json/constants.json'
 
 @Component({
   selector: 'klm-header',
@@ -26,7 +27,7 @@ export class HeaderComponent {
     private router: Router,
     public authService: AuthService){
     this.labelData = data.HeaderComponent;
-    this.isLoggedIn = localStorage.getItem('userToken') === null;
+    this.isLoggedIn = localStorage.getItem(constants['USER_TOKEN']) === null;
   }
   logOut(): void {
     this.authService.logout();

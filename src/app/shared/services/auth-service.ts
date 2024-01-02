@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import * as constants from '../../../assets/json/constants.json';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private isAuthenticated = false;
-  private userToken = ''
+  private userToken = constants['USER_TOKEN'];
 
   constructor() { }
 

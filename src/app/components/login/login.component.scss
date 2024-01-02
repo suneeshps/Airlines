@@ -1,9 +1,9 @@
 @import '../../../assets/styles/main';
 
 .klm-login {
+    padding: 20px;
     &__container {
         padding: 20px;
-        margin-top: 20px;
 
         @include large-desktop {
             max-width: 50%;
