@@ -1,16 +1,15 @@
 <div class="klm-footer">
-    <nav class="">
-        <mat-nav-list>
-            <mat-list-item *ngFor="let link of footerNavArray">
-                <a matLine [routerLink]="link.link">{{ link.label }}</a>
-            </mat-list-item>
-        </mat-nav-list>
-    </nav>
-    <nav>
-        <mat-nav-list>
-            <mat-list-item *ngFor="let link of legalNavArray">
-                <a matLine [routerLink]="link.link">{{ link.label }}</a>
-            </mat-list-item>
-        </mat-nav-list>
-    </nav>
+    <ng-container [ngTemplateOutlet]="listTemplate" [ngTemplateOutletContext]="{ list: footerNavArray }">
+    </ng-container>
+    <ng-container [ngTemplateOutlet]="listTemplate" [ngTemplateOutletContext]="{ list: legalNavArray }">
+    </ng-container>
+    <ng-template #listTemplate let-list="list">
+        <nav>
+            <mat-nav-list>
+                <mat-list-item *ngFor="let link of list">
+                    <a matLine [routerLink]="link.link">{{ link.label }}</a>
+                </mat-list-item>
+            </mat-nav-list>
+        </nav>
+      </ng-template>
 </div>

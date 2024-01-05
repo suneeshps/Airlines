@@ -1,0 +1,91 @@
+<form [formGroup]="paymentFormGroup">
+    <ng-template matStepLabel>{{labelData.Payment}}</ng-template>
+
+    <div class="klm-payment-form__selection">
+        <p>{{labelData.outboundFlight}}</p>
+    </div>
+    <h2>{{outboundFlight?.originPlace}} - {{ outboundFlight?.destinationPlace }}</h2>
+    <mat-card class="klm-payment-form__item">
+        <mat-card-content class="klm-payment-form__item__content">
+            <span>{{outboundFlight?.departureTime | date : "MMM d, y h:mm a"}}
+                <br> {{outboundFlight?.arrivalTime | date : "MMM d,y h:mm a"}}</span>
+            <span>{{outboundFlight?.originCode}} - {{outboundFlight?.destinationCode}}</span>
+            <span><img alt="logo" [src]="outboundFlight?.operatingFlightLogo"></span>
+            <span> {{labelData.duration}} - {{outboundFlight?.duration}}</span>
+            <span>{{outboundFlight?.currency}} {{outboundFlight?.displayPrice | currency :
+                outboundFlight?.currency}}</span>
+        </mat-card-content>
+    </mat-card>
+
+    <div class="klm-payment-form__selection" *ngIf="returnFlight?.originPlace">
+        <p>{{labelData.returnFlight}}t</p>
+    </div>
+    <h2 *ngIf="returnFlight?.originPlace">{{returnFlight?.originPlace}} - {{ returnFlight?.destinationPlace
+        }}</h2>
+    <mat-card class="klm-payment-form__item" *ngIf="returnFlight?.originPlace">
+        <mat-card-content class="klm-payment-form__item__content">
+            <span>{{returnFlight?.departureTime | date : "MMM d, y h:mm a"}}
+                <br> {{returnFlight?.arrivalTime | date : "MMM d,y h:mm a"}}</span>
+            <span>{{returnFlight?.originCode}} - {{returnFlight?.destinationCode}}</span>
+            <span><img alt="labelData.logo" [src]="returnFlight?.operatingFlightLogo"></span>
+            <span> {{labelData.duration}} - {{returnFlight?.duration}}</span>
+            <span>{{returnFlight?.currency}} {{returnFlight?.displayPrice | currency :
+                returnFlight?.currency}}</span>
+        </mat-card-content>
+    </mat-card>
+    <mat-card>
+        <mat-card-content>
+            <mat-radio-group aria-label="labelData.selectOption" formControlName="paymentMethod"
+                (change)="selectPaymentMethod($event)">
+                <mat-radio-button value="1">{{labelData.netBanking}}</mat-radio-button>
+                <mat-radio-button value="2">{{labelData.creditCard}}</mat-radio-button>
+
+                <div class="klm-payment-form__search-container__card__row-1"
+                    *ngIf="paymentMethodSelected === '1' && returnFlight?.originPlace">
+                    <div class="klm-payment-form__search-container__card__row-1__column-1">
+                        <mat-form-field class="klm-payment-form__search-container__card__form-field">
+                            <input matInput [placeholder]="labelData.address" formControlName="address"
+                                required type="search">
+                        </mat-form-field>
+                    </div>
+                    <div class="klm-payment-form__search-container__card__row-1__column-2">
+                        <mat-form-field class="klm-payment-form__search-container__card__form-field">
+                            <input matInput [placeholder]="labelData.city" formControlName="city" required
+                                type="search">
+                        </mat-form-field>
+                    </div>
+                    <div class="klm-payment-form__search-container__card__row-1__column-3">
+                        <mat-form-field class="klm-payment-form__search-container__card__form-field">
+                            <input matInput [placeholder]="labelData.postCode" formControlName="postCode"
+                                type="search">
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="klm-payment-form__search-container__card__row-2"
+                    *ngIf="paymentMethodSelected === '2'  && returnFlight?.originPlace">
+                    <div class="klm-payment-form__search-container__card__row-2__column-1">
+                        <mat-form-field class="klm-payment-form__search-container__card__form-field">
+                            <input matInput [placeholder]="labelData.cardNumber"
+                                formControlName="cardNumber" required type="text">
+                        </mat-form-field>
+                    </div>
+                    <div class="klm-payment-form__search-container__card__row-2__column-2">
+                        <mat-form-field class="klm-payment-form__search-container__card__form-field">
+                            <input matInput [placeholder]="labelData.securityCode"
+                                formControlName="securityCode" required type="number">
+                        </mat-form-field>
+                    </div>
+                    <div class="klm-payment-form__search-container__card__row-2__column-3">
+
+                    </div>
+                </div>
+
+                <div class="klm-payment-form__search-container__card__row-3">
+                    <button mat-raised-button matStepperNext
+                        class="klm-payment-form__item__content__btn" (click)="onPayment()">{{labelData.Payment}}</button>
+                </div>
+            </mat-radio-group>
+        </mat-card-content>
+    </mat-card>
+</form>

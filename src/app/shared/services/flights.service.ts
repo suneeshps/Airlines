@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FlightList } from '../interfaces/flight-list.interface';
 import { FlightDeals } from '../interfaces/flight-deals.interface';
-import * as data from '../../../assets/json/data.json'
+import labels from '../../../assets/json/data.json'
 
 
 @Injectable({
@@ -16,9 +16,9 @@ export class FlightsService {
   flightDeals: FlightDeals[];
 
   constructor() {
-    this.flightList = data.flightService.flightList;
-    this.returnFlightList = data.flightService.returnFlightList;
-    this.flightDeals = data.flightService.flightDeals;
+    this.flightList = labels.flightService.flightList;
+    this.returnFlightList = labels.flightService.returnFlightList;
+    this.flightDeals = labels.flightService.flightDeals;
   }
 
   getFlightList(searchParams : string | null) : Observable<any> {

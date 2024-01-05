@@ -15,6 +15,7 @@ import { Airports, AirportCode } from '../../shared/interfaces/airports-interfac
 import { HomePictureSource } from './home-picture-source.interface';
 import { HomeFlightDeals } from './home-flight-deals.interface';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'klm-home',
@@ -39,12 +40,13 @@ export class HomeComponent implements OnInit {
   tripCategories: TripCategories[];
   economyCategories: EconomyCategories[];
   airports: Airports[];
-  flightDeals: HomeFlightDeals[] = [];
+ // flightDeals: HomeFlightDeals[] = [];
   minDate: Date;
   maxDate: Date;
   labelDeals : string;
   labelDealsMessage: string;
   labelSelectMessage: string;
+  flightDeals$! : Observable<any>;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -120,11 +122,9 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/flight-list', JSON.stringify(this.searchForm.value) ]);
   }
 
-  private getFlightDeals(): HomeFlightDeals[] {
-    this.flightService.getFlightDeals().subscribe((data) => {
-      this.flightDeals = data;
-    });
-    return this.flightDeals;
+  private getFlightDeals() {
+    this.flightDeals$ = this.flightService.getFlightDeals();
+
   }
 
   getPictureSource(): HomePictureSource[] {

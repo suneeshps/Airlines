@@ -1,0 +1,42 @@
+<mat-card class="klm-payment-success__item">
+    <mat-card-content class="klm-payment-success__item__content">
+
+        <div class="klm-payment-success__item__content__success">
+            <h1>{{labelData.congratulations}}</h1>
+            <h3>{{labelData.successMessage}}</h3>
+
+            <div class="klm-payment-success__selection">
+                <p>{{labelData.outboundFlight}} {{labelData.pnr}}<strong>U794J</strong></p>
+            </div>
+            <h2>{{outboundFlight?.originPlace}} - {{ outboundFlight?.destinationPlace }}</h2>
+            <mat-card class="klm-payment-success__item">
+                <mat-card-content class="klm-payment-success__item__content">
+                    <span>{{outboundFlight?.departureTime | date : "MMM d, y h:mm a"}}
+                        <br> {{outboundFlight?.arrivalTime | date : "MMM d,y h:mm a"}}</span>
+                    <span>{{outboundFlight?.originCode}} - {{outboundFlight?.destinationCode}}</span>
+                    <span><img alt="logo" [src]="outboundFlight?.operatingFlightLogo"></span>
+                    <span> {{labelData.duration}} - {{outboundFlight?.duration}}</span>
+                    <span>{{outboundFlight?.currency}} {{outboundFlight?.displayPrice | currency :
+                        outboundFlight?.currency}}</span>
+                </mat-card-content>
+            </mat-card>
+
+            <div class="klm-payment-success__selection" *ngIf="returnFlight?.originPlace">
+                <p>{{labelData.returnFlight}} {{labelData.pnr}}<strong>UB7FGJ</strong></p>
+            </div>
+            <h2 *ngIf="returnFlight?.originPlace">{{returnFlight?.originPlace}} - {{
+                returnFlight?.destinationPlace }}</h2>
+            <mat-card class="klm-payment-success__item" *ngIf="returnFlight?.originPlace">
+                <mat-card-content class="klm-payment-success__item__content">
+                    <span>{{returnFlight?.departureTime | date : "MMM d, y h:mm a"}}
+                        <br> {{returnFlight?.arrivalTime | date : "MMM d,y h:mm a"}}</span>
+                    <span>{{returnFlight?.originCode}} - {{returnFlight?.destinationCode}}</span>
+                    <span><img alt="logo" [src]="returnFlight?.operatingFlightLogo"></span>
+                    <span> {{labelData.duration}} - {{returnFlight?.duration}}</span>
+                    <span>{{returnFlight?.currency}} {{returnFlight?.displayPrice | currency :
+                        returnFlight?.currency}}</span>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </mat-card-content>
+</mat-card>

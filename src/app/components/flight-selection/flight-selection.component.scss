@@ -1,0 +1,116 @@
+@import '../../../assets/styles/main';
+
+
+.klm-flight-list {
+    width: 100%;
+    align-items: center;
+    margin: 0 auto;
+    padding: 20px;
+
+    &__item {
+        margin-bottom: 20px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $box-shadow-color;
+        }
+
+        &__content {
+            display: flex;
+            align-items: center;
+
+            span {
+                flex: 1;
+            }
+
+            &__btn {
+                padding: 10px 20px;
+                border-radius: 5px;
+                outline: none;
+                background-color: $primary-blue-color;
+                color: $primary-white-color;
+                font-size: $font-size-17;
+                border: 1px solid $primary-blue-color;
+                cursor: pointer;
+                margin-right: 10px;
+                &:disabled{
+                    opacity: 0.5;
+                }
+            }
+
+            &__success {
+                width: 70%;
+            }
+        }
+    }
+
+    &__search-container {
+        padding: 20px;
+
+        &__card {
+            padding: 10px;
+
+            &__form-field {
+                width: calc(100% - 20px);
+                padding: 10px;
+            }
+
+            &__row-1 {
+                display: flex;
+
+                &__column-1 {
+                    flex: 1;
+                }
+
+                &__column-2 {
+                    flex: 1;
+                }
+
+                &__column-3 {
+                    flex: 1;
+                }
+            }
+
+            &__row-2 {
+                display: flex;
+
+                &__column-1 {
+                    flex: 1;
+                }
+
+                &__column-2 {
+                    flex: 1;
+                }
+
+                &__column-3 {
+                    flex: 1;
+                }
+            }
+
+            &__row-3 {
+                display: flex;
+                float: inline-end;
+
+                input[type=submit] {
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    outline: none;
+                    background-color: $primary-blue-color;
+                    color: $primary-white-color;
+                    font-size: $font-size-17;
+                    border: 1px solid $primary-blue-color;
+                    cursor: pointer;
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+
+    .mat-stepper-horizontal {
+        margin-top: 8px;
+    }
+
+    .mat-mdc-form-field {
+        margin-top: 16px;
+    }
+}

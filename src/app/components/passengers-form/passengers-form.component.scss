@@ -1,7 +1,6 @@
-@import '../../../../assets/styles/main';
+@import '../../../assets/styles/main';
 
-
-.klm-flight-list {
+.klm-passenger-list {
     width: 100%;
     align-items: center;
     margin: 0 auto;
@@ -104,13 +103,5 @@
                 }
             }
         }
-    }
-
-    .mat-stepper-horizontal {
-        margin-top: 8px;
-    }
-
-    .mat-mdc-form-field {
-        margin-top: 16px;
     }
 }

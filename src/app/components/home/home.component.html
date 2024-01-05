@@ -4,8 +4,7 @@
             <source *ngFor="let source of getPictureSource()" [media]="source.media" [srcset]="source.src" />
             <img _ngcontent-server-app-c2326870911="" class="bwc-hero-image bwc-hero-image--content-image"
                 alt="sunrise deals"
-                src="https://img.static-kl.com/transform/abe24868-a29c-4a76-856e-2d74cc20ab2b/?io=transform:fill,width:1440,height:480"
-                style="aspect-ratio: 3 / 1;">
+                src="https://img.static-kl.com/transform/abe24868-a29c-4a76-856e-2d74cc20ab2b/?io=transform:fill,width:1440,height:480">
         </picture>
     </div>
     <div class="klm-home__search-container">
@@ -89,7 +88,7 @@
                 </mat-option>
             </mat-select>
         </div>
-        <mat-card class="klm-home__deals__item" *ngFor="let item of flightDeals">
+        <mat-card class="klm-home__deals__item" *ngFor="let item of flightDeals$ | async">
             <mat-card-content class="klm-home__deals__item__content">
                 <span><img mat-card-sm-image alt="logo" [src]="item.logoUrl"></span>
                 <span>{{item.destination}} ({{item.country}})</span>

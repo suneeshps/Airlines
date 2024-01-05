@@ -1,0 +1,51 @@
+<form [formGroup]="passengersFormGroup">
+    <div class="klm-passenger-list__search-container__card__row-1">
+        <div class="klm-passenger-list__search-container__card__row-1__column-1">
+            <mat-form-field class="klm-passenger-list__search-container__card__form-field">
+                <mat-select [placeholder]="labelData.title" formControlName="genderCategory">
+                    <mat-option [value]="item.value" *ngFor="let item of genderCategories">
+                        {{ item.label }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="klm-passenger-list__search-container__card__row-1__column-2">
+            <mat-form-field class="klm-passenger-list__search-container__card__form-field">
+                <input matInput [placeholder]="labelData.firstName" formControlName="firstName" required type="search">
+            </mat-form-field>
+        </div>
+        <div class="klm-passenger-list__search-container__card__row-1__column-3">
+            <mat-form-field class="klm-passenger-list__search-container__card__form-field">
+                <input matInput [placeholder]="labelData.lastName" formControlName="lastName" type="search">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="klm-passenger-list__search-container__card__row-2">
+        <div class="klm-passenger-list__search-container__card__row-2__column-1">
+            <mat-form-field class="klm-passenger-list__search-container__card__form-field">
+                <mat-select [placeholder]="labelData.countryCode" formControlName="countryCode">
+                    <mat-option [value]="item.value" *ngFor="let item of countryCodes">
+                        {{ item.label }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="klm-passenger-list__search-container__card__row-2__column-2">
+            <mat-form-field class="klm-passenger-list__search-container__card__form-field">
+                <input matInput [placeholder]="labelData.email" formControlName="email" required type="email">
+            </mat-form-field>
+        </div>
+        <div class="klm-passenger-list__search-container__card__row-2__column-3">
+            <mat-form-field class="klm-passenger-list__search-container__card__form-field">
+                <input matInput [placeholder]="labelData.telephoneNumber" formControlName="telephoneNumber"
+                    type="number">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="klm-passenger-list__search-container__card__row-3">
+        <button mat-raised-button matStepperNext class="klm-passenger-list__item__content__btn"
+            [disabled]="!passengersFormGroup.valid"  (click)="onPassengersSelection()">{{labelData.proceed}}</button>
+    </div>
+</form>

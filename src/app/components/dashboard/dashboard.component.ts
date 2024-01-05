@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import * as data from '../../../assets/json/labels.json';
 import { FlightsService } from '../../shared/services/flights.service';
 import { FlightList } from '../../shared/interfaces/flight-list.interface';
+import  labels from '../../../assets/json/labels.json';
 
 @Component({
   selector: 'klm-dashboard',
@@ -22,7 +22,7 @@ export class DashboardComponent {
   returnFlight?: FlightList;
 
   constructor(private flightService: FlightsService){
-    this.labelData = data.dashboardComponent;
+    this.labelData = labels.dashboardComponent;
     this.userId = 'zxcvb'
   }
   ngOnInit() {

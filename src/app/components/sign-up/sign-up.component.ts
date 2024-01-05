@@ -4,8 +4,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterModule } from '@angular/router';
-import * as data from '../../../assets/json/labels.json';
 import { AuthService } from '../../shared/services/auth-service';
+import labels from '../../../assets/json/labels.json';
 
 
 @Component({
@@ -32,12 +32,12 @@ export class SignUpComponent {
     this.signUpForm = this.formBuilder.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
-      email: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', [Validators.required]],
       password: ['', [Validators.required]],
       confirmPassword: ['', [Validators.required]]
     });
-    this.labelData = data.signUpComponent;
+    this.labelData = labels.signUpComponent;
 
   }
   signUp(): void {

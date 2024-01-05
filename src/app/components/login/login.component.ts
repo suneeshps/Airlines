@@ -4,8 +4,9 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterModule } from '@angular/router';
-import * as data from '../../../assets/json/labels.json';
 import { AuthService } from '../../shared/services/auth-service';
+import labels from '../../../assets/json/labels.json';
+
 
 @Component({
   selector: 'klm-login',
@@ -30,10 +31,10 @@ export class LoginComponent {
     private router: Router,
     private authService: AuthService) {
     this.loginForm = this.formBuilder.group({
-      userName: ['', [Validators.required]],
+      userName: ['', [Validators.required,  Validators.email]],
       password: ['', [Validators.required]]
     });
-    this.labelData = data.loginComponent;
+    this.labelData = labels.loginComponent;
 
   }
   login(): void {

@@ -19,7 +19,8 @@
             &__left {
                 flex: 1;
 
-                span {
+                &::after {
+                    content: '';
                     display: inline-block;
                     background-image: url(../../../assets/images/kl-logo-2022.svg);
                     width: 300px;

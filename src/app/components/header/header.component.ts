@@ -4,8 +4,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../shared/services/auth-service';
 import { CommonModule } from '@angular/common';
-import * as data from '../../../assets/json/labels.json';
-import * as constants from '../../../assets/json/constants.json'
+import  data from '../../../assets/json/labels.json';
+import  constants from '../../../assets/json/constants.json'
 
 @Component({
   selector: 'klm-header',

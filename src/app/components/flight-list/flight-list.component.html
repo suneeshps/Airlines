@@ -1,0 +1,31 @@
+<div class="klm-flight-list">
+
+    <mat-stepper #stepper>
+        <mat-step [stepControl]="outBoundFormGroup">
+            <form [formGroup]="outBoundFormGroup">
+                <ng-template matStepLabel>{{labelData.outboundFlight}}</ng-template>
+                <h2>{{(flightList$ | async)?.[0]?.originPlace }} - {{ (flightList$ | async)?.[0]?.destinationPlace }}</h2>
+                <klm-flight-selection [flightList]="(flightList$ | async)"
+                    (onFlightSelection)="getReturnFlightList($event)"></klm-flight-selection>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="returnFormGroup" [label]="labelData.returnFlight" *ngIf="tripCategory === 1">
+            <form [formGroup]="returnFormGroup">
+                <h2>{{(returnFlightList$ | async)?.[0]?.originPlace }} - {{ (returnFlightList$ | async)?.[0]?.destinationPlace }}</h2>
+                <klm-flight-selection [flightList]="(returnFlightList$ | async)"
+                    (onFlightSelection)="goToPassengerDetails($event)"></klm-flight-selection>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="passengerFormGroup" label="Passengers">
+                <klm-passengers-form (onPassengerSelection)="goToPaymentMethod($event)"></klm-passengers-form>
+        </mat-step>
+        <mat-step [stepControl]="paymentFormGroup">
+            <ng-template matStepLabel>{{labelData.Payment}}</ng-template>
+            <klm-payment-form [outboundFlight]="outboundFlight" [returnFlight]="returnFlight" (onPaymentComplete)="proceedPayment($event)"></klm-payment-form>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>{{labelData.done}}</ng-template>
+            <klm-payment-success [outboundFlight]="outboundFlight" [returnFlight]="returnFlight"></klm-payment-success>
+        </mat-step>
+    </mat-stepper>
+</div>
