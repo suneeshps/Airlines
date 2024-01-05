@@ -18,8 +18,8 @@ export class PaymentSuccessComponent {
 
   labelData:any;
 
-  @Input() returnFlight!:FlightList;
-  @Input() outboundFlight!:FlightList;
+  @Input() returnFlight?:FlightList;
+  @Input() outboundFlight?:FlightList;
 
   constructor(){
     this.labelData = labels.flighListComponent;

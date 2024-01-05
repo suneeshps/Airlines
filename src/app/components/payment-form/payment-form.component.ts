@@ -30,8 +30,8 @@ export class PaymentFormComponent {
   labelData:any;
   paymentMethodSelected!: string;
 
-  @Input() returnFlight!:FlightList;
-  @Input() outboundFlight!:FlightList;
+  @Input() returnFlight?:FlightList;
+  @Input() outboundFlight?:FlightList;
   @Output() onPaymentComplete = new EventEmitter<any>;
 
   constructor(private formBuilder: FormBuilder){
