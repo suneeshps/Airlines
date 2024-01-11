@@ -6,8 +6,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
-import labels from '../../../assets/json/labels.json';
-import { FlightList } from '../../shared/interfaces/flight-list.interface';
+import labels from '../../../../assets/json/labels.json';
+import { FlightList } from '../../../shared/interfaces/flight-list.interface';
 
 @Component({
   selector: 'klm-payment-form',

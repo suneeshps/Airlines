@@ -17,7 +17,7 @@ export const routes: Routes = [
         path:'dashboard', component: DashboardComponent, canActivate: [authGuard]
     },
     {
-        path:'flight-list/:searchParams', component: FlightListComponent
+        path:'flight-list', component: FlightListComponent
     },
     {
         path:'login', component: LoginComponent

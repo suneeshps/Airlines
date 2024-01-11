@@ -3,10 +3,10 @@ import { Form, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validat
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import labels from '../../../assets/json/labels.json';
+import labels from '../../../../assets/json/labels.json';
 import { CommonModule, NgFor } from '@angular/common';
-import { GenderPrefix } from '../../shared/interfaces/gender-prefix.interface';
-import { CountryCode } from '../../shared/interfaces/country-code.interface';
+import { GenderPrefix } from '../../../shared/interfaces/gender-prefix.interface';
+import { CountryCode } from '../../../shared/interfaces/country-code.interface';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 

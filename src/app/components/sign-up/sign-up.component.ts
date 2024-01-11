@@ -22,7 +22,7 @@ import labels from '../../../assets/json/labels.json';
   styleUrl: './sign-up.component.scss'
 })
 export class SignUpComponent {
-  signUpForm: FormGroup;
+  signUpForm!: FormGroup;
   labelData: any;
 
   constructor(

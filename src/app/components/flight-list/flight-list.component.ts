@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FlightsService } from '../../shared/services/flights.service';
 import { MatCardModule } from '@angular/material/card';
@@ -11,11 +11,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import labels from '../../../assets/json/labels.json';
-import { FlightSelectionComponent } from '../flight-selection/flight-selection.component';
-import { PassengersFormComponent } from '../passengers-form/passengers-form.component';
-import { PaymentFormComponent } from '../payment-form/payment-form.component';
-import { PaymentSuccessComponent } from '../payment-success/payment-success.component';
-import { Observable } from 'rxjs';
+import { FlightSelectionComponent } from './flight-selection/flight-selection.component';
+import { PassengersFormComponent } from './passengers-form/passengers-form.component';
+import { PaymentFormComponent } from './payment-form/payment-form.component';
+import { PaymentSuccessComponent } from './payment-success/payment-success.component';
+import { Observable, Subscription } from 'rxjs';
+import { GlobalService } from '../../shared/services/global.service';
 
 
 @Component({
@@ -39,7 +40,7 @@ import { Observable } from 'rxjs';
   templateUrl: './flight-list.component.html',
   styleUrl: './flight-list.component.scss'
 })
-export class FlightListComponent implements OnInit {
+export class FlightListComponent implements OnInit, OnDestroy {
   flightList!: FlightList[];
   returnFlightList!: FlightList[];
   outBoundFormGroup: FormGroup;
@@ -52,20 +53,21 @@ export class FlightListComponent implements OnInit {
   paymentMethod?: string;
   paymentMethodSelected?: string;
   labelData: any;
-  tripCategory: number;
+  tripCategory = 1;
 
   @ViewChild('stepper') private myStepper!: MatStepper;
   flightList$!: Observable<FlightList[]>;
-  returnFlightList$!: Observable<FlightList[]>;
-
+  returnFlightList$!: Observable<FlightList[]>; 
+  unsubscribeData: Subscription;
 
 
   constructor(
     private route: ActivatedRoute,
     private flightService: FlightsService,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private globalService: GlobalService) {
     this.searchParams = this.route.snapshot.paramMap.get('searchParams');
-    this.tripCategory = JSON.parse(this.searchParams).tripCategory;
+   
     this.outBoundFormGroup = this.formBuilder.group({
       outBoundCtrl: ['', Validators.required],
     });
@@ -76,14 +78,14 @@ export class FlightListComponent implements OnInit {
       passengerCtrl: ['', Validators.required]
     });
     this.paymentFormGroup = this.formBuilder.group({
-      address: ['', Validators.required],
-      city: ['', Validators.required],
-      postCode: ['', Validators.required],
-      cardNumber: ['', Validators.required],
-      securityCode: ['', Validators.required],
-      paymentMethod: ['']
+      paymentCtrl: ['', Validators.required]
     });
     this.labelData = labels.flighListComponent;
+
+    this.unsubscribeData = this.globalService.getData$.subscribe(data => {
+      this.searchParams = data;
+      this.tripCategory = this.searchParams?.tripCategory;
+    });
   }
 
   ngOnInit() {
@@ -105,6 +107,9 @@ export class FlightListComponent implements OnInit {
   }
   proceedPayment($event: any){
     this.myStepper.next();
+  }
+  ngOnDestroy(){
+    this.unsubscribeData.unsubscribe();
   }
 
 }

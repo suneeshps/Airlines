@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { FlightList } from '../../shared/interfaces/flight-list.interface';
-import labels from '../../../assets/json/labels.json';
+import { FlightList } from '../../../shared/interfaces/flight-list.interface';
+import labels from '../../../../assets/json/labels.json';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 

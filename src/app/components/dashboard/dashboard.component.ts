@@ -23,7 +23,7 @@ export class DashboardComponent {
 
   constructor(private flightService: FlightsService){
     this.labelData = labels.dashboardComponent;
-    this.userId = 'zxcvb'
+    this.userId = 'asdgecxr131434'
   }
   ngOnInit() {
     this.flightService.getUserOutboundFlighList(this.userId).subscribe((data) => {

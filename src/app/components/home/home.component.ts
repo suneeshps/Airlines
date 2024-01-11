@@ -16,6 +16,7 @@ import { HomePictureSource } from './home-picture-source.interface';
 import { HomeFlightDeals } from './home-flight-deals.interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { GlobalService } from '../../shared/services/global.service';
 
 @Component({
   selector: 'klm-home',
@@ -52,7 +53,8 @@ export class HomeComponent implements OnInit {
     private formBuilder: FormBuilder,
     private flightService: FlightsService,
     private router: Router,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private globalService: GlobalService) {
     this.labelDeals = 'Destinations and deals' 
     this.labelDealsMessage = 'Discover our best Economy class deals on flights departing from';
     this.labelSelectMessage = 'Select your travel date';
@@ -119,7 +121,8 @@ export class HomeComponent implements OnInit {
   }
 
   searchFlights(): void {
-    this.router.navigate(['/flight-list', JSON.stringify(this.searchForm.value) ]);
+    this.globalService.setData(this.searchForm.value);
+    this.router.navigate(['/flight-list']);
   }
 
   private getFlightDeals() {
